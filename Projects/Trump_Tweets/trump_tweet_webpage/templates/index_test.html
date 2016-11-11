@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Challenge 10: D3</title>
+  <style type="text/css">
+    body {
+      background-color: #eee;
+    }
+    svg {
+      background-color: white;
+    } 
+   
+  </style>
+  <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+<div id="Q1"></div>
+<div id="Q2"></div>
+<div id="Q3"></div>
+<div id="Q4"></div>
+<div id="Q5"></div>
+<div id="Q6"></div>
+
+<script type="text/javascript">
+var dataset = [40, 120, 200, 280, 360];
+var dataset1 = [120, 200, 280];
+var w = 400;
+var h = 400;
+
+            var svg1 = d3.select('#Q1')//("body")
+                .append("svg")
+                .attr("width", w )   
+                .attr("height", h ) 
+                // .append("g")
+
+
+        // svg2 //Width and height            
+            var svg2 = d3.select('#Q2')//("body")
+                .append("svg")
+                .attr("width", w )   
+                .attr("height", h ) 
+                // .append("g")         
+
+        // svg3 //Width and height            
+            var svg3 = d3.select('#Q3')//("body")
+                .append("svg")
+                .attr("width", w )   
+                .attr("height", h ) 
+                // .append("g")
+
+          // svg4//Width and height            
+            var svg4 = d3.select('#Q4')//("body")
+                .append("svg")
+                .attr("width", w )   
+                .attr("height", h ) 
+                // .append("g")
+  
+
+            // svg5//Width and height            
+            var svg5 = d3.select('#Q5')//("body")
+                .append("svg")
+                .attr("width", w )   
+                .attr("height", h ) 
+                // .append("g")
+
+            // svg5//Width and height            
+            var svg6 = d3.select('#Q6')//("body")
+                .append("svg")
+                .attr("width", w )   
+                .attr("height", h ) 
+                // .append("g")
+
+
+var c20 = d3.scale.category20();
+var c20b = d3.scale.category20b();
+var c20c = d3.scale.category20c();
+var color_scale = d3.scale.linear().domain([d3.min(dataset), d3.max(dataset)]).range(['red','orange']);
+
+var circles1 = svg1.selectAll("circle")
+                .data(dataset)
+                .enter()
+                .append("circle")
+
+var circles2 = svg2.selectAll("circle")
+                .data(dataset)
+                .enter()
+                .append("circle")
+
+var circles3 = svg3.selectAll("circle")
+                .data(dataset)
+                .enter()
+                .append("circle")
+
+var circles4 = svg4.selectAll("circle")
+                .data(dataset1)
+                .enter()
+                .append("circle")
+
+var rect4 = svg4.selectAll("rect")
+                  .data([200])
+                  .enter()
+                  .append("rect")
+
+var tri5 = svg5.selectAll("path")
+              .data([200])
+                .enter()
+                .append("path")
+                ;
+
+var tri6 = svg6.selectAll("points")
+              .data([ {"x": 15+143, "y": 55+30+122},
+                  {"x": 20+200-30, "y": 10+46-30+125},
+                  {"x": 30+257-65, "y": 55+30+122}])
+                .enter()
+                .append("path")
+                ;
+
+circles1        
+        .attr("cx", function(d) { return d; })
+        .attr("cy", 60)
+        .attr("r", 30)
+        .style("fill", color_scale)
+        ;
+
+circles2        
+        .attr("cx", function(d) { return d; })
+        .attr("cy", function(d, i) { return 50 + i*75; })
+        .attr("r", 30)
+        .style("fill", color_scale)
+        ;
+
+circles3        
+        .attr("cx", function(d, i) { return 25 + Math.random() * 325; })
+        .attr("cy", function(d, i) { return 25 + Math.random() * 325; })
+        .attr("r", 30)
+        .style("fill", color_scale)
+        ;
+
+circles4        
+        .attr("cx", function(d, i) { return 25 + Math.random() * 325; })
+        .attr("cy", function(d, i) { return 25 + Math.random() * 325; })
+        .attr("r", 30)
+        .style("fill", color_scale)
+        ;
+
+rect4 
+        .attr("x", function(d, i) { return 25 + Math.random() * 325; })
+        .attr("y", function(d, i) { return 25 + Math.random() * 325; })
+        .attr("width", 100) 
+        .attr("height", 50)
+        .attr("fill", "steelblue")
+        ;
+
+tri5
+        .style("stroke", "steelblue")
+        .style("stroke-width", 5)  // colour the line
+        .style("fill", "gold")     // remove any fill colour
+        .attr("d", "M 150 250 L 200 150 L 250 250  Z");  // path commands 
+        ;
+
+tri6
+        .style("stroke", "gold")
+        .style("stroke-width", 1)
+        .style("fill", "gold")
+        .attr("class", "point")
+        .attr("size", 100)
+        .attr("d", d3.svg.symbol().size(225*2*4).type("triangle-up")) //.size(function(d){ return scale(d); });
+            // .attr("transform", function(d,i) { return "translate(" + x_Scale(i) + "," + y_Scale(i) + ")"; })
+        .attr("transform", function(d,i) { return "translate(" + d.x + "," + d.y + ")"; })
+        ;
+
+
+</script>
+
+</body>
+</html>
